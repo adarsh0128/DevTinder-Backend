@@ -2,25 +2,22 @@ const express = require("express");
 
 const app = express();
 
-// this will only match get
-app.get("/user/:id/:pass", (req, res) => {
-  res.send("evrything is wright");
-});
+app.use(
+  "/",
+  (req, res, next) => {
+    console.log("hi2");
+    next();
+  },
+  (req, res, next) => {
+    console.log("hi2");
+    next();
+  },
+  (req, res, next) => {
+    console.log("hi3");
 
-// this will only match get
-app.get("/user", (req, res) => {
-  res.send({ firstName: "Adarsh", lastName: "Kumar" });
-});
-
-// this will only match post
-app.post("/user", (req, res) => {
-  res.send("Data saved successfully");
-});
-
-// this will match all the http method api call to test the user
-app.use("/home", (req, res) => {
-  res.send("Hi welcome to home");
-});
+    res.send("ADARSH ");
+  }
+);
 
 app.listen(3000, () => {
   console.log("success");
