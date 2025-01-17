@@ -5,6 +5,32 @@ const User = require("./models/user");
 
 app.use(express.json());
 
+app.get("/user", async (req, res) => {
+  const userEmail = req.body.emailId;
+  try {
+    const user = await User.findOne({ emailId: userEmail });
+    if (!user) {
+      res.status(404).send("user not found");
+    }
+    res.send(user);
+  } catch (error) {
+    res.status(400).send("something went wrong");
+  }
+});
+
+app.get("/feed", async (req, res) => {
+  const userEmail = req.body.emailId;
+  try {
+    const user = await User.find({});
+    if (user.length === 0) {
+      res.status(404).send("user not found");
+    }
+    res.send(user);
+  } catch (error) {
+    res.status(400).send("something went wrong");
+  }
+});
+
 app.post("/signup", async (req, res) => {
   const user = new User(req.body);
 
@@ -19,8 +45,8 @@ app.post("/signup", async (req, res) => {
 connectDB()
   .then(() => {
     console.log("Database coneect successfully");
-    app.listen(3000, () => {
-      console.log("success running on server 3000");
+    app.listen(7777, () => {
+      console.log("success");
     });
   })
   .catch((err) => {
