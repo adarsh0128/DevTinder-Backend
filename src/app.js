@@ -20,7 +20,7 @@ connectDB()
   .then(() => {
     console.log("Database coneect successfully");
     app.listen(3000, () => {
-      console.log("success");
+      console.log("success running on server 3000");
     });
   })
   .catch((err) => {
