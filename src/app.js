@@ -57,7 +57,10 @@ app.patch("/user", async (req, res) => {
   const userId = req.body.userId;
   const data = req.body;
   try {
-    const user = await User.findByIdAndUpdate({ _id: userId }, data);
+    const user = await User.findByIdAndUpdate({ _id: userId }, data, {
+      returnDocument: "after",
+      runValidators: true,
+    });
 
     res.send("user updated succesfully");
   } catch (error) {
@@ -68,10 +71,10 @@ app.patch("/user", async (req, res) => {
 connectDB()
   .then(() => {
     console.log("Database coneect successfully");
-    app.listen(3001, () => {
+    app.listen(3003, () => {
       console.log("success");
     });
   })
   .catch((err) => {
-    console.log("database not connected");
+    console.log("database not connectedd");
   });
