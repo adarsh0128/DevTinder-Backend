@@ -62,7 +62,7 @@ app.patch("/user/:userId", async (req, res) => {
       ALLOWED_UPDATES.includes(k)
     );
     if (!isUpdateAllowed) {
-      throw new Error("Update no allowed");
+      throw new Error("Update not allowed");
     }
     const user = await User.findByIdAndUpdate({ _id: userId }, data, {
       returnDocument: "after",
