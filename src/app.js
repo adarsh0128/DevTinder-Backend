@@ -139,8 +139,8 @@ app.patch("/user/:userId", async (req, res) => {
 connectDB()
   .then(() => {
     console.log("Database coneect successfully");
-    app.listen(3010, () => {
-      console.log("success");
+    app.listen(3000, () => {
+      console.log("App islistening on port 3000");
     });
   })
   .catch((err) => {
